@@ -1,6 +1,10 @@
 import requests
 import time
 import json
+import os
+
+project_path = os.path.dirname(__file__)
+
 
 daoda_service = 'http://127.0.0.1:10201'
 
@@ -75,7 +79,7 @@ def get_wind_speed(speed: str):
     return 0.1 * num ** 3
 
 
-weatherData = json.load(open('mock_data/weatherData.json', encoding='utf8'))
+weatherData = json.load(open(os.path.join(project_path, 'mock_data\\weatherData.json'), encoding='utf8'))
 for item in weatherData:
     item["times"] = f"{item['date'].replace('/', '-')}T{item['time']}"
 

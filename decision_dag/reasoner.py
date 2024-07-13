@@ -18,7 +18,7 @@ logging.getLogger().setLevel(logging.INFO)
 
 def execute_process(process_id: str, params: list):
     # TODO get process definition, use local file for now
-    project_root = os.path.basename(os.path.basename(__file__))
+    project_root = os.path.dirname(os.path.dirname(__file__))
     file_path = os.path.join(project_root, f'knowledge_base/{process_id}.json')
     dag = json.load(open(file_path, encoding='utf8'))
     g = init_dag(dag)

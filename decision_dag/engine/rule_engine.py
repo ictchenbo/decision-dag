@@ -6,7 +6,7 @@ import os
 from pyDatalog.pyDatalog import load, ask, Logic
 
 
-project_root = os.path.basename(os.path.basename(os.path.basename(__file__)))
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 
 def fact_value(v):

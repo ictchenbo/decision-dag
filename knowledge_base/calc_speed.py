@@ -4,8 +4,7 @@
 # 输出：subject
 # 输出：env
 # 输出：speed
-
-import math
+import re
 
 
 def env_speed(subject, env: dict):
@@ -34,10 +33,7 @@ def get_env(time, place=None):
     }
 
 
-def get_routes(start, end):
-    pass
-
-
 subject = get_subject(subject_type)
 env = get_env(time)
 speed = env_speed(subject, env)
+match = bool(re.match("^abc", "abc1"))

@@ -4,9 +4,9 @@ import json
 import os
 from mock_service import get_entity_detail
 
-project_base = os.path.basename(os.path.basename(os.path.basename(__file__)))
+project_base = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 file_path = os.path.join(project_base, 'service_config.json')
-service_config = json.load(open(file_path))
+service_config = json.load(open(file_path, encoding="utf8"))
 
 
 def match_service(spec: str):
@@ -32,9 +32,9 @@ def extract_value(data, vkey):
     return vkey
 
 
-def output_data(res_data, output_data, output_params):
+def output_data(res_data, out_data, output_params):
     for key, value in output_params.items():
-        output_data[key] = extract_value(res_data, value)
+        out_data[key] = extract_value(res_data, value)
 
 
 def service_op(name, data, conf, input_params, output_params):
@@ -105,11 +105,13 @@ def script_op(name: str, data, conf: dict = None, input_params: dict = None, out
         for key, value in input_params.items():
             if key == '_imports' and isinstance(value, list):
                 for vi in value:
-                    global_env[vi] == __import__(vi)
+                    pkg = __import__(vi)
+                    # import module set here
+                    global_env[vi] = pkg
             env[key] = extract_value(data, value)
     # 执行脚本
     try:
-        res = exec(script, global_env, env)
+        exec(script, global_env, env)
     except Exception as e:
         return False, str(e)
     # 输出
