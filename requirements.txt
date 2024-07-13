@@ -1,0 +1,7 @@
+networkx~=2.6.3
+greenlet~=1.1.2
+gevent~=21.12.0
+pyDatalog
+requests
+Flask
+geopy

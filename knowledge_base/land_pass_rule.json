@@ -1,0 +1,294 @@
+{
+	"id": "63f62d9876f09b2a42e7af86",
+	"rulesetName": "陆地可通行规则集",
+	"domain": "陆地可通行规则",
+	"description": "陆地可通行规则集合",
+	"language": "pyDatalog",
+	"ontologies": ["交通及附属设施"],
+	"rules": [{
+		"id": "63f62d9876f09b2a42e7af86508a3300d92b4d92a301a0ea3e234e8f",
+		"ruleName": "陆上机动装备可通过道路",
+		"preConditions": ["陆上机动装备可通过道路宽度(X,Y)", "陆上机动装备可通过道路高度(X,Y)", "陆上机动装备可通过道路竖壁(X,Y)", "陆上机动装备可通过道路沟渠(X,Y)", "陆上机动装备可通过道路坡度(X,Y)"],
+		"conclusion": "陆上机动装备可通过道路(X,Y)",
+		"terms": [{
+			"variable": "X",
+			"name": "交通线路",
+			"type": "VAR",
+			"ontology": "交通及附属设施",
+			"ontoClass": "63f62520e87a534755975978",
+			"needSubClass": true
+		}, {
+			"variable": "Y",
+			"name": "陆上机动装备",
+			"type": "VAR",
+			"ontology": "陆军装备本体",
+			"ontoClass": "陆上机动装备",
+			"needSubClass": true
+		}],
+		"functionsName": ["陆上机动装备可通过道路宽度", "陆上机动装备可通过道路高度", "陆上机动装备可通过道路竖壁", "陆上机动装备可通过道路沟渠", "陆上机动装备可通过道路坡度", "陆上机动装备可通过道路土壤"]
+	}, {
+		"id": "63f62d9876f09b2a42e7af86b76271fcd79e43bb9cd687e6c8221073",
+		"ruleName": "陆上机动装备可通过道路宽度",
+		"preConditions": ["陆上机动装备宽度[Y]<=道路限宽[X]"],
+		"conclusion": "陆上机动装备可通过道路宽度(X, Y)",
+		"terms": [{
+			"variable": "Y",
+			"name": "陆上机动装备",
+			"type": "VAR",
+			"ontology": "陆军装备本体",
+			"ontoClass": "陆上机动装备",
+			"needSubClass": true
+		}, {
+			"variable": "X",
+			"name": "交通线路",
+			"type": "VAR",
+			"ontology": "交通及附属设施",
+			"ontoClass": "63f62520e87a534755975978",
+			"needSubClass": true
+		}],
+		"functionsName": ["陆上机动装备宽度", "道路限宽", "陆上机动装备可通过道路宽度"]
+	}, {
+		"id": "63f62d9876f09b2a42e7af8633f346e9180a4423bf17e71fdb15582b",
+		"ruleName": "陆上机动装备可通过道路高度",
+		"preConditions": ["陆上机动装备高度[Y]<=道路限高[X]"],
+		"conclusion": "陆上机动装备可通过道路高度(X, Y)",
+		"terms": [{
+			"variable": "Y",
+			"name": "陆上机动装备",
+			"type": "VAR",
+			"ontology": "陆军装备本体",
+			"ontoClass": "陆上机动装备",
+			"needSubClass": true
+		}, {
+			"variable": "X",
+			"name": "交通线路",
+			"type": "VAR",
+			"ontology": "交通及附属设施",
+			"ontoClass": "63f62520e87a534755975978",
+			"needSubClass": true
+		}],
+		"functionsName": ["陆上机动装备高度", "道路限高", "陆上机动装备可通过道路高度"]
+	}, {
+		"id": "63f62d9876f09b2a42e7af869776b8030e2e436489a9f3b616dee7a4",
+		"ruleName": "陆上机动装备可通过道路竖壁",
+		"preConditions": ["陆上机动装备类型[Y] == '越野汽车'", "道路竖壁最高高度[X] <= 0"],
+		"conclusion": "陆上机动装备可通过道路竖壁(X,Y)",
+		"terms": [{
+			"variable": "X",
+			"name": "交通路线",
+			"type": "VAR",
+			"ontology": "交通及附属设施",
+			"ontoClass": "63f62520e87a534755975978",
+			"needSubClass": false
+		}, {
+			"variable": "Y",
+			"name": "陆上机动装备",
+			"type": "VAR",
+			"ontology": "陆军装备本体",
+			"ontoClass": "陆上机动装备",
+			"needSubClass": false
+		}],
+		"functionsName": ["陆上机动装备类型", "道路竖壁最高高度"]
+	}, {
+		"id": "63f62d9876f09b2a42e7af86a145e74396fd45619889acc5e60546f2",
+		"ruleName": "陆上机动装备可通过道路竖壁",
+		"preConditions": ["陆上机动装备类型[Y] == '履带牵引车'", "道路竖壁最高高度[X] <= 0.6"],
+		"conclusion": "陆上机动装备可通过道路竖壁(X,Y)",
+		"terms": [{
+			"variable": "X",
+			"name": "交通路线",
+			"type": "VAR",
+			"ontology": "交通及附属设施",
+			"ontoClass": "63f62520e87a534755975978",
+			"needSubClass": false
+		}, {
+			"variable": "Y",
+			"name": "陆上机动装备",
+			"type": "VAR",
+			"ontology": "陆军装备本体",
+			"ontoClass": "陆上机动装备",
+			"needSubClass": false
+		}],
+		"functionsName": ["陆上机动装备类型", "道路竖壁最高高度"]
+	}, {
+		"id": "63f62d9876f09b2a42e7af860e8ccea58b784c3db85a6682f4eae00c",
+		"ruleName": "陆上机动装备可通过道路沟渠",
+		"preConditions": ["陆上机动装备类型[Y] == '越野汽车'", "道路沟渠最宽宽度[X] < 0.8"],
+		"conclusion": "陆上机动装备可通过道路沟渠(X,Y)",
+		"terms": [{
+			"variable": "X",
+			"name": "交通路线",
+			"type": "VAR",
+			"ontology": "交通及附属设施",
+			"ontoClass": "63f62520e87a534755975978",
+			"needSubClass": false
+		}, {
+			"variable": "Y",
+			"name": "陆上机动装备",
+			"type": "VAR",
+			"ontology": "陆军装备本体",
+			"ontoClass": "陆上机动装备",
+			"needSubClass": false
+		}],
+		"functionsName": ["陆上机动装备类型", "道路沟渠最宽宽度"]
+	}, {
+		"id": "63f62d9876f09b2a42e7af869659541a2afd4a1c8c505f790ef142b0",
+		"ruleName": "陆上机动装备可通过道路沟渠",
+		"preConditions": ["陆上机动装备类型[Y] == '履带牵引车'", "道路沟渠最宽宽度[X] < 2.0"],
+		"conclusion": "陆上机动装备可通过道路沟渠(X,Y)",
+		"terms": [{
+			"variable": "X",
+			"name": "交通路线",
+			"type": "VAR",
+			"ontology": "交通及附属设施",
+			"ontoClass": "63f62520e87a534755975978",
+			"needSubClass": false
+		}, {
+			"variable": "Y",
+			"name": "陆上机动装备",
+			"type": "VAR",
+			"ontology": "陆军装备本体",
+			"ontoClass": "陆上机动装备",
+			"needSubClass": false
+		}],
+		"functionsName": ["陆上机动装备类型", "道路沟渠最宽宽度"]
+	}, {
+		"id": "63f62d9876f09b2a42e7af86cf2defa58c7944baad4e4de059b5c393",
+		"ruleName": "陆上机动装备可通过道路坡度",
+		"preConditions": ["陆上机动装备类型[Y] == ' 越野汽车'", "道路坡度[X] < 30"],
+		"conclusion": "陆上机动装备可通过道路坡度(X,Y) ",
+		"terms": [{
+			"variable": "X",
+			"name": "交通路线",
+			"type": "VAR",
+			"ontology": "交通及附属设施",
+			"ontoClass": "63f62520e87a534755975978",
+			"needSubClass": true
+		}, {
+			"variable": "Y",
+			"name": "陆上机动装备",
+			"type": "VAR",
+			"ontology": "陆军装备本体",
+			"ontoClass": "陆上机动装备",
+			"needSubClass": true
+		}],
+		"functionsName": ["陆上机动装备类型", "道路坡度"]
+	}, {
+		"id": "63f62d9876f09b2a42e7af86018d9bacb8a94e7ab8d6b868517d1547",
+		"ruleName": "陆上机动装备可通过道路坡度",
+		"preConditions": ["陆上机动装备类型[Y] == ' 履带牵引车'", "道路坡度[X] < 25"],
+		"conclusion": "陆上机动装备可通过道路坡度(X,Y)",
+		"terms": [{
+			"variable": "X",
+			"name": "交通路线",
+			"type": "VAR",
+			"ontology": "交通及附属设施",
+			"ontoClass": "63f62520e87a534755975978",
+			"needSubClass": true
+		}, {
+			"variable": "Y",
+			"name": "陆上机动装备",
+			"type": "VAR",
+			"ontology": "陆军装备本体",
+			"ontoClass": "陆上机动装备",
+			"needSubClass": true
+		}],
+		"functionsName": ["陆上机动装备类型", "道路坡度"]
+	}],
+	"functions": [{
+		"name": "陆上机动装备可通过道路宽度",
+		"functionType": "SELF_DEFINE",
+		"ontology": "陆军装备本体",
+		"ontoClass": "陆上机动装备",
+		"property": ""
+	}, {
+		"name": "陆上机动装备可通过道路高度",
+		"functionType": "SELF_DEFINE",
+		"ontology": "陆军装备本体",
+		"ontoClass": "陆上机动装备",
+		"property": ""
+	}, {
+		"name": "陆上机动装备可通过道路竖壁",
+		"functionType": "SELF_DEFINE",
+		"ontology": "陆军装备本体",
+		"ontoClass": "陆上机动装备",
+		"property": ""
+	}, {
+		"name": "陆上机动装备可通过道路沟渠",
+		"functionType": "SELF_DEFINE",
+		"ontology": "陆军装备本体",
+		"ontoClass": "陆上机动装备",
+		"property": ""
+	}, {
+		"name": "陆上机动装备可通过道路坡度",
+		"functionType": "SELF_DEFINE",
+		"ontology": "陆军装备本体",
+		"ontoClass": "陆上机动装备",
+		"property": ""
+	}, {
+		"name": "陆上机动装备可通过道路土壤",
+		"functionType": "SELF_DEFINE",
+		"ontology": "陆军装备本体",
+		"ontoClass": "陆上机动装备",
+		"property": ""
+	}, {
+		"name": "陆上机动装备宽度",
+		"functionType": "DATA_PROPERTY",
+		"ontology": "陆军装备本体",
+		"ontoClass": "陆上机动装备",
+		"property": "宽度"
+	}, {
+		"name": "道路限宽",
+		"functionType": "DATA_PROPERTY",
+		"ontology": "交通及附属设施",
+		"ontoClass": "交通路线",
+		"property": "限宽"
+	}, {
+		"name": "陆上机动装备高度",
+		"functionType": "DATA_PROPERTY",
+		"ontology": "陆军装备本体",
+		"ontoClass": "陆上机动装备",
+		"property": "高度"
+	}, {
+		"name": "道路限高",
+		"functionType": "DATA_PROPERTY",
+		"ontology": "交通及附属设施",
+		"ontoClass": "交通路线",
+		"property": "限高"
+	}, {
+		"name": "陆上机动装备类型",
+		"functionType": "DATA_PROPERTY",
+		"ontology": "陆军装备本体",
+		"ontoClass": "陆上机动装备",
+		"property": "类型"
+	}, {
+		"name": "道路竖壁最高高度",
+		"functionType": "DATA_PROPERTY",
+		"ontology": "交通及附属设施",
+		"ontoClass": "交通路线",
+		"property": "竖壁最高高度"
+	}, {
+		"name": "道路沟渠最宽宽度",
+		"functionType": "DATA_PROPERTY",
+		"ontology": "交通及附属设施",
+		"ontoClass": "交通路线",
+		"property": "沟渠最宽宽度"
+	}, {
+		"name": "道路坡度",
+		"functionType": "DATA_PROPERTY",
+		"ontology": "交通及附属设施",
+		"ontoClass": "交通路线",
+		"property": "坡度"
+	}, {
+		"name": "陆上机动装备可通过的土壤类型包含",
+		"functionType": "SELF_DEFINE",
+		"ontology": "陆军装备本体",
+		"ontoClass": "陆上机动装备",
+		"property": "",
+		"description": ""
+	}, {
+		"name": "包八土壤模型输出",
+		"functionType": "SELF_DEFINE",
+		"description": "车辆可通过的土壤类型包含"
+	}]
+}

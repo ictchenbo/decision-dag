@@ -1,0 +1,113 @@
+{
+    "id": "dag001",
+    "name": "浅滩登陆作战决策",
+    "description": "判定在指定时间和指定地点是否具备登陆条件",
+    "inputParams": [
+        {
+            "chineseName": "登陆部队",
+            "name": "troop",
+            "type": "string"
+        },
+        {
+            "chineseName": "地点",
+            "name": "place",
+            "type": "string"
+        },
+        {
+            "chineseName": "时间",
+            "name": "time",
+            "type": "datetime"
+        }
+    ],
+    "outputParams": [
+        {
+            "chineseName": "是否可通行",
+            "name": "is_ok",
+            "type": "string"
+        }
+    ],
+    "dagTasks": [
+        {
+            "id": "get_basic_info",
+            "name": "获取地点基础信息",
+            "description": "",
+            "type": "service",
+            "service": "MOCK/1.0",
+            "inputParams": {
+                "id": "@place"
+            },
+            "outputParams": {
+                "be_data": "@be_data"
+            }
+        },
+        {
+            "id": "weather_forecast",
+            "name": "获取天气预测信息",
+            "description": "",
+            "type": "service",
+            "service": "天气预测服务/1.0",
+            "inputParams": {
+                "place": "@place",
+                "time": "@time"
+            },
+            "outputParams": {
+                "weather": {"气象环境": "@result"}
+            }
+        },
+        {
+            "id": "ocean_forecast",
+            "name": "获取海洋预测信息",
+            "description": "",
+            "type": "service",
+            "service": "海洋预测服务/1.0",
+            "inputParams": {
+                "place": "@place",
+                "time": "@time"
+            },
+            "outputParams": {
+                "ocean": {"海洋环境": "@result"}
+            }
+        },
+        {
+            "id": "by_rules",
+            "name": "调用规则推理",
+            "description": "",
+            "type": "service",
+            "service": "规则推理服务/1.0",
+            "ruleset_ids": [
+                "639bf1f7b6766133cb7c57dd"
+            ],
+            "inputParams": {
+                "rule_id": "shore_land",
+                "facts": ["@be_data", "@weather", "@ocean"],
+                "env_object": "@place",
+                "subject": "两栖登陆舰",
+                "query": "部队可登陆"
+            },
+            "outputParams": {
+                "is_ok": "@result"
+            }
+        }
+    ],
+    "taskDependencies": [
+        [
+            "get_basic_info",
+            "weather_forecast"
+        ],
+        [
+            "get_basic_info",
+            "ocean_forecast"
+        ],
+        [
+            "weather_forecast",
+            "by_rules"
+        ],
+        [
+            "ocean_forecast",
+            "by_rules"
+        ]
+    ],
+    "starts": ["get_basic_info"],
+    "ends": ["by_rules"],
+    "version": "4.0.0"
+}

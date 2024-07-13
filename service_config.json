@@ -1,0 +1,52 @@
+[
+  {
+    "name": "MOCK",
+    "description": "",
+    "version": "1.0",
+    "provider": "中科院计算所",
+    "api_address": "http://localhost:8222/get_basic_info"
+  },
+  {
+    "name": "MOCK1",
+    "description": "",
+    "version": "1.0",
+    "provider": "中科院计算所",
+    "api_address": "http://localhost:8222/weather_forecast_fake"
+  },
+  {
+    "name": "规则推理服务",
+    "description": "",
+    "version": "1.0",
+    "provider": "中科院计算所",
+    "api_address": "http://localhost:8282/inference/_execute/rules"
+  },
+  {
+    "name": "部队行进推演",
+    "description": "",
+    "version": "1.0",
+    "provider": "中科院计算所",
+    "method": "GET",
+    "api_address": "http://localhost:8282/inference/_execute/path_points"
+  },
+  {
+    "name": "天气预测服务",
+    "description": "",
+    "version": "1.0",
+    "provider": "XX",
+    "api_address": "http://localhost:8222/weather_forecast"
+  },
+  {
+    "name": "海洋预测服务",
+    "description": "",
+    "version": "1.0",
+    "provider": "XX",
+    "api_address": "http://localhost:8222/ocean_forecast"
+  },
+  {
+    "name": "导航规划服务",
+    "description": "",
+    "version": "1.0",
+    "provider": "XX",
+    "api_address": "http://localhost:8222/navigate"
+  }
+]

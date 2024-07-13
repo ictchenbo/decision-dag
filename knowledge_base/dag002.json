@@ -1,0 +1,91 @@
+{
+    "id": "dag002",
+    "name": "空降点机动决策",
+    "description": "计算某部队在某个越野机动路线上的推进情况",
+    "inputParams": [
+        {
+            "chineseName": "起点",
+            "name": "place_start",
+            "type": "string"
+        },
+        {
+            "chineseName": "终点",
+            "name": "place_end",
+            "type": "string"
+        },
+        {
+            "chineseName": "开始时间",
+            "name": "time_start",
+            "type": "datetime"
+        },
+        {
+            "chineseName": "作战部队",
+            "name": "troop",
+            "type": "string"
+        }
+    ],
+    "outputParams": [
+        {
+            "chineseName": "总时长",
+            "name": "total_time",
+            "type": "integer"
+        }
+    ],
+    "dagTasks": [
+        {
+            "id": "get_navigate_routes",
+            "name": "获取导航路径",
+            "description": "",
+            "type": "service",
+            "service": "导航规划服务/1.0",
+            "inputParams": {
+                "start": "@place_start",
+                "end": "@place_end"
+            },
+            "outputParams": {
+                "paths": "@paths"
+            }
+        },
+        {
+            "id": "troop_march",
+            "name": "部队行进过程推演",
+            "description": "",
+            "type": "service",
+            "service": "部队行进推演/1.0",
+            "inputParams": {
+                "time": "@time_start",
+                "place_start": "@place_start",
+                "place_end": "@place_end",
+                "paths": "@paths",
+                "subject": "@troop"
+            },
+            "outputParams": {
+                "path_points": "@data"
+            }
+        },
+        {
+            "id": "path_choose",
+            "name": "路径选择服务",
+            "description": "",
+            "type": "external_script",
+            "external_script": "choose_path.py",
+            "inputParams": {},
+            "outputParams": {
+                "total_time": "@total_time"
+            }
+        }
+    ],
+    "taskDependencies": [
+        [
+            "get_navigate_routes",
+            "troop_march"
+        ],
+        [
+            "troop_march",
+            "path_choose"
+        ]
+    ],
+    "starts": ["get_navigate_routes"],
+    "ends": ["path_choose"],
+    "version": "4.0.0"
+}
