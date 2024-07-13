@@ -155,7 +155,7 @@
 	}, {
 		"id": "63f62d9876f09b2a42e7af86cf2defa58c7944baad4e4de059b5c393",
 		"ruleName": "陆上机动装备可通过道路坡度",
-		"preConditions": ["陆上机动装备类型[Y] == ' 越野汽车'", "道路坡度[X] < 30"],
+		"preConditions": ["陆上机动装备类型[Y] == '越野汽车'", "道路坡度[X] < 30"],
 		"conclusion": "陆上机动装备可通过道路坡度(X,Y) ",
 		"terms": [{
 			"variable": "X",
@@ -176,7 +176,7 @@
 	}, {
 		"id": "63f62d9876f09b2a42e7af86018d9bacb8a94e7ab8d6b868517d1547",
 		"ruleName": "陆上机动装备可通过道路坡度",
-		"preConditions": ["陆上机动装备类型[Y] == ' 履带牵引车'", "道路坡度[X] < 25"],
+		"preConditions": ["陆上机动装备类型[Y] == '履带牵引车'", "道路坡度[X] < 25"],
 		"conclusion": "陆上机动装备可通过道路坡度(X,Y)",
 		"terms": [{
 			"variable": "X",
